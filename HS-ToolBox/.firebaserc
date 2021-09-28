@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "hs-toolbox": {
+      "hosting": {
+        "HS-ToolBox": [
+          "hs-toolbox"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "hs-toolbox"
+  }
+}

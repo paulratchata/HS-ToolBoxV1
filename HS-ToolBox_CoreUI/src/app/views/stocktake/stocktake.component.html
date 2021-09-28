@@ -1,0 +1,67 @@
+<div class="card col-6">
+    <div class="card-header">
+        <i class="fa fa-align-justify"></i> <button (click)="createEvModal.show()"
+            class="btn btn-sm btn-square btn-info">
+            <i class="cil-note-add"></i>
+            Create event</button>
+    </div>
+    <div class="card-body">
+        <table class="table table-hover table-responsive">
+            <thead class="thead-light">
+                <tr>
+                    <th>#</th>
+                    <th>Create date</th>
+                    <th>Event name</th>
+                    <th>Event type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ev of eventData$;index as i">
+                    <th scope="row">{{i}}</th>
+                    <td>{{ev.date | date: "dd/MM/YY"}}</td>
+                    <td>{{ev.user}}</td>
+                    <td>{{ev.eventName}}</td>
+                    <td>{{ev.eventType}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- MODAL -->
+<div bsModal #createEv="bs-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-info" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Create stocktake event</h4>
+                <button type="button" class="close" (click)="createEvModal.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!--  -->
+                <form [formGroup]="evForm">
+                    <div class="form-group">
+                        <label for="eventName">Event name</label>
+                        <input formControlName="eventName" type="text" class="form-control" id="eventName"
+                            placeholder="please provide event name...">
+                    </div>
+                    <div class="form-group">
+                        <label for="evenevType">Event Type</label>
+                        <select formControlName="type" class="form-control">
+                            <option selected value="">Select the event type</option>
+                            <option id="evenevType" *ngFor="let type of evType" [value]="type">{{type}}</option>
+                        </select>
+                    </div>
+                </form>
+                <!--  -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="createEvModal.hide()">Close</button>
+                <button type="button" (click)="createEvent()" class="btn btn-info">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- {{user | json}} -->
